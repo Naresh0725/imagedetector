@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Result - Tampering Detector</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style-apple.css') }}">
+
+</head>
+
+<body style="text-align:center;font-family:Arial">
+
+<h1>Prediction Result</h1>
+
+<h2>{{ prediction }}</h2>
+
+<h3>Original Image</h3>
+<img src="/{{ img_path }}" width="350">
+
+<h3>ELA Analysis</h3>
+<img src="/{{ ela_path }}" width="350">
+
+<h3>Tampered Region Detection</h3>
+<img src="/{{ tamper_path }}" width="350">
+
+<br><br>
+
+<a href="/">Upload Another Image</a>
+
+</body>
+
+</html>

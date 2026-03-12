@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style-apple.css') }}">
+
+<title>Image Tampering Detector</title>
+</head>
+
+<body style="text-align:center; font-family:Arial">
+
+<h1>Image Tampering Detection</h1>
+
+<form action="/predict" method="post" enctype="multipart/form-data">
+
+<input type="file" name="image" required>
+
+<br><br>
+
+<button type="submit">Check Image</button>
+
+</form>
+
+</body>
+</html>
