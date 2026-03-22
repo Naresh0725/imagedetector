@@ -1,31 +1,86 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Result - Tampering Detector</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style-apple.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Result - Image Tampering Detector</title>
 </head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="logo">Tampering Detector</a>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">New Analysis</a></li>
+                <li><a href="#" class="nav-link">How It Works</a></li>
+                <li><a href="#" class="nav-link">Technology</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<body style="text-align:center;font-family:Arial">
+    <!-- Result Hero -->
+    <section class="result-hero">
+        <div class="container">
+        <h1 class="hero-title fade-in">Analysis Complete</h1>
+    {% if 'tampered' in prediction.lower() or 'tamper' in prediction.lower() %}
+        <div class="result-badge btn btn-error">⚠️ Image Tampered Detected</div>
+    {% else %}
+        <div class="result-badge btn btn-success">✅ Image Authentic</div>
+        {% endif %}
+        <h2 class="hero-subtitle fade-in delay-1">{{ prediction }}</h2>
 
-<h1>Prediction Result</h1>
+        {% if 'tampered' in prediction.lower() or 'tamper' in prediction.lower() %}
+        <div class="result-note fade-in delay-2">
+        ⚠️ <strong>Note:</strong> Images shared through apps like WhatsApp, or saved multiple times (e.g., JPG → JPEG),
+    may be compressed or altered automatically. This can sometimes be detected as tampering even if the image is original
+        </div>
+{% endif %}
+        </div>
+    </section>
 
-<h2>{{ prediction }}</h2>
+    <!-- Results Grid -->
+    <section class="image-grid">
+        <div class="image-card fade-in">
+            <div class="image-container">
+                <img src="/{{ img_path }}" alt="Original Image" loading="lazy">
+            </div>
+            <div class="image-label">Original Image</div>
+        </div>
+        <div class="image-card fade-in delay-1">
+            <div class="image-container">
+                <img src="/{{ ela_path }}" alt="ELA Analysis" loading="lazy">
+            </div>
+            <div class="image-label">ELA Analysis</div>
+        </div>
+        <div class="image-card fade-in delay-2">
+            <div class="image-container">
+                <img src="/{{ tamper_path }}" alt="Tampered Regions" loading="lazy">
+            </div>
+            <div class="image-label">Tampered Region Detection</div>
+        </div>
+    </section>
 
-<h3>Original Image</h3>
-<img src="/{{ img_path }}" width="350">
+    <!-- CTA -->
+    <div style="text-align: center; padding: 60px 0;">
+        <a href="/" class="btn btn-secondary">Analyze Another Image</a>
+    </div>
 
-<h3>ELA Analysis</h3>
-<img src="/{{ ela_path }}" width="350">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+            <div class="footer-bottom">
+                © 2024 Tampering Detector. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
-<h3>Tampered Region Detection</h3>
-<img src="/{{ tamper_path }}" width="350">
-
-<br><br>
-
-<a href="/">Upload Another Image</a>
-
+<script src="{{ url_for('static', filename='Script.js') }}"></script>
 </body>
-
 </html>
+
