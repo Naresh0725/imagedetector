@@ -1,0 +1,18 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore uploads (VERY IMPORTANT)
+static/uploads/*
+static/ELA_Images/*
+
+# Keep folders
+!static/uploads/.keep
+!static/ELA_Images/.keep
+
+# Ignore temp files
+temp.jpg
+
+# Ignore system files
+.DS_Store
+Thumbs.db
